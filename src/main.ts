@@ -5,17 +5,18 @@ import path from "path";
 import { writeFileSync } from "fs";
 
 const main = async () => {
+  const start = Date.now();
   const argv = yargs(hideBin(process.argv)).argv;
 
   const { file, header = 1, skip = 1, out } = argv as Record<string, any>;
 
   if (!file) {
-    console.error("Please provide a --file argument");
+    console.error("Please provide a --file=<path> argument");
     process.exit(1);
   }
 
   if (!out) {
-    console.error("Please provide a --out argument");
+    console.error("Please provide an --out=<path> argument");
     process.exit(1);
   }
 
@@ -42,7 +43,11 @@ const main = async () => {
 
   writeFileSync(path.resolve(out), jsonOutput);
 
-  console.log("Fin.");
+  console.log(
+    `Generated ${path.resolve(out)}\n${result.length} rows in ${
+      Date.now() - start
+    }ms`
+  );
   process.exit(0);
 };
 
