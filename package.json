@@ -1,0 +1,25 @@
+{
+  "name": "xlsx2json",
+  "version": "1.0.0",
+  "main": "dist/main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "esbuild ./src/main.ts --bundle --outfile=./dist/main.js --platform=node --loader:.node=file --sourcemap --target=es2020",
+    "build:binaries": "pkg dist/main.js -t node16-mac-x64,node16-win-x64,node16-linux-x64 --output bin/xlsx2json",
+    "make": "yarn build && yarn build:binaries"
+  },
+  "description": "",
+  "devDependencies": {
+    "@types/node": "^22.6.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.2"
+  },
+  "dependencies": {
+    "@types/yargs": "^17.0.33",
+    "esbuild": "^0.24.0",
+    "json-2-csv": "^5.5.5",
+    "pkg": "^5.8.1",
+    "xlsx": "^0.18.5",
+    "yargs": "^17.7.2"
+  }
+}
