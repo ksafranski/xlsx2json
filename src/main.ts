@@ -11,12 +11,12 @@ const main = async () => {
 
   if (!file) {
     console.error("Please provide a --file argument");
-    return;
+    process.exit(1);
   }
 
   if (!out) {
     console.error("Please provide a --out argument");
-    return;
+    process.exit(1);
   }
 
   const workbook = XLSX.readFile(path.resolve(file));
@@ -43,6 +43,7 @@ const main = async () => {
   writeFileSync(path.resolve(out), jsonOutput);
 
   console.log("Fin.");
+  process.exit(0);
 };
 
 main();
